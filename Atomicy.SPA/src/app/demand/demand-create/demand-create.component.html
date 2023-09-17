@@ -1,0 +1,39 @@
+<h2>Create Demand</h2>
+<form [formGroup]="createDemandForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="demandTypeId">Demand Type</label>
+    <select formControlName="demandTypeId" placeholder="Select" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.demandTypeId.errors }">
+      <option *ngFor="let demandType of demandTypes" [value]="demandType.demandTypeId">{{demandType.name}}</option>
+      <option value="" hidden>Select Demand Type</option>
+    </select>
+    <div *ngIf="submitted && f.demandTypeId.errors" class="invalid-feedback">
+      <div *ngIf="f.demandTypeId.errors.required">Demand Type is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="from">From Location</label>
+    <input type="text" formControlName="from" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.from.errors }" />
+    <div *ngIf="submitted && f.from.errors" class="invalid-feedback">
+      <div *ngIf="f.from.errors.required">From Location is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="to">To Location</label>
+    <input type="text" formControlName="to" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.to.errors }" />
+    <div *ngIf="submitted && f.to.errors" class="invalid-feedback">
+      <div *ngIf="f.to.errors.required">To Location is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="note">Note</label>
+    <textarea formControlName="note" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.note.errors }"></textarea>
+    <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Save
+    </button>
+  </div>
+</form>

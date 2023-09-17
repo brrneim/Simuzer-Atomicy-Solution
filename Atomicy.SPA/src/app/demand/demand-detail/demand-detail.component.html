@@ -1,0 +1,75 @@
+<h2>Demand Detail</h2>
+<form [formGroup]="detailDemandForm">
+  <div class="form-group">
+    <label for="demandTypeId">Demand Type Location</label>
+    <input type="text" formControlName="demandTypeId" [readonly]="true" class="form-control" [ngModel]="selectedDemandType?.name" />
+  </div>
+  <div class="form-group">
+    <label for="from">From Location</label>
+    <input type="text" formControlName="from" [readonly]="true" class="form-control" [ngModel]="(demandModel$ | async)?.from"  />
+  </div>
+  <div class="form-group">
+    <label for="to">To Location</label>
+    <input type="text" formControlName="to" [readonly]="true" class="form-control" [ngModel]="(demandModel$ | async)?.to"  />
+  </div>
+  <div class="form-group">
+    <label for="note">Note</label>
+    <textarea formControlName="note" [readonly]="true" class="form-control"  [ngModel]="(demandModel$ | async)?.note"></textarea>
+  </div>
+  <!-- <div class="wrapper">
+    <div class="chat-box" >
+      <div class="header">
+      <h1>What's on your mind?</h1>
+       <div class="close" (click)="closeChat()"></div>
+      </div>
+      <div class="message-box">
+         <li *ngFor="let message of messages; let i = index"><strong>{{message.authorId}}:</strong> {{message.text}}</li>
+      </div>
+      <section>
+      <textarea [(ngModel)]="textareaValue" placeholder="say hi!" (keyup.enter)="sendMessage()"></textarea>
+       <button (click)="sendMessage()" mat-raised-button>Send</button>
+      </section>
+    </div>
+  
+  
+  </div> -->
+
+</form>
+<form novalidate
+  (ngSubmit)="saveReservation()"
+  [formGroup]="reservationForm">
+
+  <div class="form-group">
+    <label for="firmId">Rezervasyon Yapılacak Firma  </label>
+    <select formControlName="firmId" placeholder="Select" class="form-control" >
+      <option *ngFor="let firm of firms" [value]="firm.firmId">{{firm.firmName}}</option>
+      <option value="" hidden>Firma Seçiniz</option>
+    </select>
+    <div *ngIf="submitted && m.firmId.errors" class="invalid-feedback">
+      <div *ngIf="m.firmId.errors.required">Firma seçimi zorunludur!</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="note">Taşıma Tarihi Giriniz : </label>
+    <mat-form-field>
+     <mat-label>Seçiniz</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="carryDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+    <label for="note">Reservation Note</label>
+    <textarea formControlName="note" class="form-control"  ></textarea>
+  </div>
+
+  <a routerLink="/demand/demands" class="btn btn-link">Return My Demands</a>
+  
+  <button [disabled]="loading" class="btn btn-primary" type="submit">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Enter Reservation
+  </button>
+
+</form>

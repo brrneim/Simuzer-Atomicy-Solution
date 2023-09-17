@@ -1,0 +1,50 @@
+<div class='card'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class="col-md-12 text-right ">
+            <div class='row' *ngIf="!isFirm">
+                <div class='col-md-12' style="margin: 10px;">
+                    <button class="btn btn-primary"
+                    (click)="newDemand()">
+              Yeni Talep
+            </button>
+                </div>
+              </div>
+          </div>
+          
+      <div class='table-responsive'>
+        <table class='table'
+               *ngIf='demands.length'>
+          <thead>
+            <tr>
+              <th>
+               Talep Id
+              </th>
+              <th>Nereden</th>
+              <th>Nereye</th>
+              <th>Talep Tarihi</th>
+              <th>Note</th>
+             
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let demand of demands'>
+             <td>
+                <a [routerLink]="['/demand/demandDetail', demand.demandId]">
+                  {{ demand.demandId }}
+                </a>
+              </td>
+              <td>{{ demand.from }}</td>
+              <td>{{ demand.to }}</td>
+              <td>{{ demand.demandDate | date:'yyyy/MM/dd HH:mm' }}</td>
+              <td>{{ demand.note  }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  </div>
