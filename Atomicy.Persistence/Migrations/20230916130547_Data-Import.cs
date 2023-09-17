@@ -248,7 +248,7 @@ namespace Atomicy.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Firms",
                 columns: new[] { "FirmId", "BigTruckCount", "CreatedBy", "CreatedDate", "FirmName", "LastModifiedBy", "LastModifiedDate", "Note", "TruckCount", "VanCount" },
-                values: new object[] { new Guid("bf3f3002-7e53-441e-8b76-f6280be284aa"), 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Nakliyat", null, null, "10 yıldır müşterilerimize üst düzeyde hizmet vermekteyiz.", 5, 2 });
+                values: new object[] { new Guid("bf3f3002-7e53-441e-8b76-f6280be284aa"), 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kolay Nakliyat", null, null, "10 yıldır müşterilerimize üst düzeyde hizmet vermekteyiz.", 5, 2 });
 
             migrationBuilder.InsertData(
                 table: "FirmComments",
